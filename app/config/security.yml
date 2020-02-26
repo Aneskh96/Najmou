@@ -1,0 +1,47 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            user_checker: security.user_checker
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                success_handler: redirect.after.login
+
+            logout:       true
+            anonymous:    true
+            oauth:
+                resource_owners:
+                    facebook:           "/login/check-facebook"
+                    google:             "/login/check-google"
+                login_path:        /login
+                use_forward:       false
+                failure_path:      /login
+                success_handler: redirect.after.login
+
+                oauth_user_provider:
+                    service: my.oauth_aware.user_provider.service
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY ,requires_channel: https}
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_SUPER_ADMIN }
+        - { path: ^/inde/, role: ROLE_IND_E , requires_channel: https}
+        - { path: ^/asse/, role: ROLE_ASS_E, requires_channel: https}
+        - { path: ^/soce/, role: ROLE_SOC_E , requires_channel: https}
+        - { path: ^/indr/, role: ROLE_IND_R , requires_channel: https}
+        - { path: ^/assr/, role: ROLE_ASS_R , requires_channel: https}
+        - { path: ^/socr/, role: ROLE_SOC_R, requires_channel: https}
+        - { path: ^/user/, role: ROLE_USER, requires_channel: https}
+        - { path: ^/affichage, role: ROLE_CLIENT, requires_channel: https }
