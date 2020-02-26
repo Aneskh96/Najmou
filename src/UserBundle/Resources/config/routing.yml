@@ -1,0 +1,24 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+indexinde_homepage:
+    path:     /inde/inde_index
+    defaults: { _controller: UserBundle:Default:indexINDE }
+indexasse_homepage:
+    path:     /asse/asse_index
+    defaults: { _controller: UserBundle:Default:indexASSE }
+indexsoce_homepage:
+    path:     /soce/soce_index
+    defaults: { _controller: UserBundle:Default:indexSOCE }
+indexindr_homepage:
+    path:     /indr/indr_index
+    defaults: { _controller: UserBundle:Default:indexINDR }
+indexassr_homepage:
+    path:     /assr/assr_index
+    defaults: { _controller: UserBundle:Default:indexASSR }
+indexsocr_homepage:
+    path:     /socr/socr_index
+    defaults: { _controller: UserBundle:Default:indexSOCR }
+admin_homepage:
+    path:     /socr/socr_index
+    defaults: { _controller: UserBundle:Default:indexAdmin }
